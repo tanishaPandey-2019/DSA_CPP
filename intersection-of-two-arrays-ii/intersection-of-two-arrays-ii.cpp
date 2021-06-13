@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        
-        unordered_map<int,int> numFreq;
+          unordered_map<int,int> numFreq;
                 
         int n1 = nums1.size();
         int n2 = nums2.size();
@@ -25,5 +24,6 @@ public:
         }
         
         return ans;
+        
     }
 };
