@@ -1,5 +1,5 @@
 # Sum of elements in a matrix
-##  School 
+## School 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a non null integer matrix Grid of dimensions NxM.Calculate the sum of its elements.</span></p>
 
