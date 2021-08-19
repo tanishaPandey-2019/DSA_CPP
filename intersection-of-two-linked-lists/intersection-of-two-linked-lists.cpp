@@ -10,33 +10,32 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         
-        multimap<int, ListNode*> nodeAdd;
-        multimap<int, ListNode*> :: iterator itr;
+        vector<ListNode*> vec;
         
         ListNode* temp = headA;
         while(temp != NULL)
         {
-            
-            nodeAdd.insert(pair<int,ListNode*> (temp->val, temp));
+            vec.push_back(temp);
             temp = temp->next;
         }
         
-        ListNode* tempB = headB;
-        while(tempB != NULL)
+        int n = vec.size();
+        
+        temp = headB;
+        while(temp != NULL)
         {
-            // itr = nodeAdd.find(tempB->val);
-            if(nodeAdd.find(tempB->val) != nodeAdd.end()) 
+            for(int i = 0;i<n;i++)
             {
-                itr = nodeAdd.find(tempB->val);
-                if(itr->second == tempB)
+                if(temp == vec[i])
                 {
-                    return tempB;
+                    return temp;
+                    break;
                 }
-                
             }
-            tempB = tempB->next;
+            temp = temp->next;
         }
         
         return NULL;
+        
     }
 };
