@@ -1,77 +1,42 @@
-// *
-//  * Definition for singly-linked list.
-//  * struct ListNode {
-//  *     int val;
-//  *     ListNode *next;
-//  *     ListNode() : val(0), next(nullptr) {}
-//  *     ListNode(int x) : val(x), next(nullptr) {}
-//  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
-//  * };
-
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         
-        stack<int> s;
+        stack<ListNode*> s;
+        if(head == NULL || head->next == NULL)
+            return head;
         
         ListNode* temp = head;
+        
         while(temp != NULL)
         {
-            s.push(temp->val);
+            s.push(temp);
             temp = temp->next;
         }
         
-        if(head == NULL)
-        {
-            return head;
-        }
-        ListNode* newNode = new ListNode;
-        newNode->val = s.top();
-        newNode->next = NULL;
+        ListNode* node = new ListNode();
+        temp = node = s.top();
         s.pop();
-        ListNode* newHead = newNode;
+        
         while(!s.empty())
         {
-            ListNode* node = new ListNode;
-            node->val = s.top();
-            node->next = NULL;
+            temp->next = s.top();
+            temp = temp->next;
             s.pop();
-            newNode->next = node;
-            newNode = node;
+            
         }
-        
-        return newHead;
-        
-//         ListNode* prev = NULL;
-//         ListNode* current = head;
-//         ListNode* second = head;
-        
-//         while(second != NULL)
-//         {
-//             second = second->next;
-//             current->next = prev;
-//             prev = current;
-//             current = second;
-//         }
-//         head = prev;
-        
-//         return head;
-        
-//         ListNode* first = NULL;
-//         ListNode* present = head;
-//         ListNode* second = head;
-        
-//         while(second != NULL)
-//         {
-//             second = second->next;
-//             present->next = first;
-//             first = present;
-//             present = second;
-//         }
-//         head = first;
-
-        
-//         return head;
+        temp->next = NULL;
+        return node;
         
         
     }
